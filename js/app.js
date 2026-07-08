@@ -126,10 +126,7 @@ function statusLabel(status) {
 }
 
 function officialBadge(gpt) {
-  if (gpt.slug !== "gpt-sotour") {
-    return "";
-  }
-  return `<span class="product-badge">First Official Product</span>`;
+  return gpt.slug === "gpt-sotour" ? `<span class="product-badge">First Official Product</span>` : "";
 }
 
 function loadGpts() {
@@ -182,15 +179,14 @@ function filterGpts(gpts, searchText, category) {
   return gpts.filter((gpt) => {
     const matchesCategory = category === "All" || gpt.category === category;
     const haystack = [gpt.name, gpt.shortDescription, gpt.longDescription, gpt.category, gpt.status].join(" ").toLowerCase();
-    const matchesSearch = !normalized || haystack.includes(normalized);
-    return matchesCategory && matchesSearch;
+    return matchesCategory && (!normalized || haystack.includes(normalized));
   });
 }
 
 function renderCategoryFilters(container, categories, activeCategory) {
-  container.innerHTML = categories.map((category) => `
-    <button class="chip chip--button ${category === activeCategory ? "is-active" : ""}" type="button" data-category-filter="${escapeHtml(category)}">${escapeHtml(category)}</button>
-  `).join("");
+  container.innerHTML = categories
+    .map((category) => `<button class="chip chip--button ${category === activeCategory ? "is-active" : ""}" type="button" data-category-filter="${escapeHtml(category)}">${escapeHtml(category)}</button>`)
+    .join("");
 }
 
 function updateStats(gpts) {
@@ -206,7 +202,7 @@ function updateStats(gpts) {
 function renderHome(gpts) {
   updateStats(gpts);
   setSeoMeta({
-    title: `LAFRYHI GPT Store | GPT سطور والمنتجات الرسمية`,
+    title: "LAFRYHI GPT Store | GPT سطور والمنتجات الرسمية",
     description: "واجهة رسمية لعرض GPTs والأدوات الذكية الجاهزة للاستخدام، تبدأ بـ GPT سطور كأول منتج رسمي داخل LAFRYHI GPT Store.",
     path: "/",
   });
@@ -277,13 +273,17 @@ function renderDashboardPage(gpts) {
     { label: "Categories", value: categoryCount, hint: "Content groups" },
   ];
 
-  grid.innerHTML = metrics.map((item) => `
-    <article class="metric-card card-surface">
-      <p class="metric-card__label">${escapeHtml(item.label)}</p>
-      <p class="metric-card__value">${escapeHtml(item.value)}</p>
-      <p class="metric-card__hint">${escapeHtml(item.hint)}</p>
-    </article>
-  `).join("");
+  grid.innerHTML = metrics
+    .map(
+      (item) => `
+        <article class="metric-card card-surface">
+          <p class="metric-card__label">${escapeHtml(item.label)}</p>
+          <p class="metric-card__value">${escapeHtml(item.value)}</p>
+          <p class="metric-card__hint">${escapeHtml(item.hint)}</p>
+        </article>
+      `,
+    )
+    .join("");
 
   spotlight.innerHTML = `
     <article class="insight-card card-surface">
@@ -319,25 +319,136 @@ function renderCategoriesPage(gpts) {
   const categories = Object.entries(buckets).map(([name, items]) => ({ name, items }));
   totals.textContent = String(categories.length);
 
-  target.innerHTML = categories.map((category) => `
-    <article class="category-card card-surface">
-      <div class="category-card__head">
-        <div>
-          <p class="detail-section__label">Category</p>
-          <h2>${escapeHtml(category.name)}</h2>
-        </div>
-        <span class="category-card__count">${category.items.length}</span>
-      </div>
-      <p class="category-card__copy">${escapeHtml(category.items.map((item) => item.name).join(" · "))}</p>
-      <a class="text-link" href="gpts.html?category=${encodeURIComponent(category.name)}">Browse GPTs</a>
-    </article>
-  `).join("");
+  target.innerHTML = categories
+    .map(
+      (category) => `
+        <article class="category-card card-surface">
+          <div class="category-card__head">
+            <div>
+              <p class="detail-section__label">Category</p>
+              <h2>${escapeHtml(category.name)}</h2>
+            </div>
+            <span class="category-card__count">${category.items.length}</span>
+          </div>
+          <p class="category-card__copy">${escapeHtml(category.items.map((item) => item.name).join(" · "))}</p>
+          <a class="text-link" href="gpts.html?category=${encodeURIComponent(category.name)}">Browse GPTs</a>
+        </article>
+      `,
+    )
+    .join("");
 
   setSeoMeta({
     title: `Categories | ${SITE_TITLE}`,
     description: "استعرض الفئات المختلفة داخل LAFRYHI GPT Store وعدد الأدوات في كل فئة.",
     path: "/categories.html",
   });
+}
+
+function renderSotourDetail(current) {
+  const launchUrl = sanitizeUrl(current.runUrl);
+  const examplePrompts = [
+    "اكتب لي منشور فيسبوك عن تطبيق جديد.",
+    "حوّل هذه الفكرة إلى منشور احترافي.",
+    "اكتب وصفًا لتطبيق Google Play.",
+    "أعد صياغة هذا النص ليصبح أكثر إقناعًا.",
+    "اكتب تعليقًا طبيعيًا على هذا المنشور.",
+  ];
+  const bestFor = [
+    "Facebook posts",
+    "LinkedIn posts",
+    "Google Play descriptions",
+    "Human comments",
+    "App launch posts",
+    "Rewriting and polishing",
+  ];
+
+  return `
+    <section class="detail-hero card-surface detail-hero--featured" style="--accent:${current.accent}">
+      <div class="detail-hero__content detail-hero__content--featured">
+        <div class="detail-hero__intro">
+          <div class="detail-hero__badge-row">
+            <span class="chip">${escapeHtml(current.category)}</span>
+            <span class="status ${statusClass(current.status)}">${escapeHtml(current.status)}</span>
+            ${officialBadge(current)}
+          </div>
+          <h1>${escapeHtml(current.name)}</h1>
+          <p class="detail-hero__lead">${escapeHtml(current.shortDescription)}</p>
+          <div class="detail-meta-strip">
+            <div class="detail-meta">
+              <span>Product ID</span>
+              <strong>LAF-001</strong>
+            </div>
+            <div class="detail-meta">
+              <span>Version</span>
+              <strong>1.0.0</strong>
+            </div>
+            <div class="detail-meta">
+              <span>Status</span>
+              <strong>Active</strong>
+            </div>
+          </div>
+        </div>
+        <div class="detail-hero__actions">
+          <a class="button button--primary" href="${launchUrl}" target="_blank" rel="noreferrer">Launch GPT</a>
+          <a class="button button--secondary" href="gpts.html">Back to GPTs</a>
+        </div>
+      </div>
+      <div class="detail-hero__icon detail-hero__icon--featured" aria-hidden="true">${escapeHtml(current.icon)}</div>
+    </section>
+
+    <section class="detail-stack">
+      <article class="detail-section card-surface">
+        <p class="detail-section__label">What GPT سطور does</p>
+        <p class="detail-copy">
+          مساعد عربي يحول الأفكار الخام والنصوص البسيطة إلى محتوى جاهز للنشر، مناسب لفيسبوك، لينكدإن، أوصاف التطبيقات، التعليقات، الرسائل، وإعادة الصياغة.
+        </p>
+      </article>
+
+      <article class="detail-section card-surface">
+        <p class="detail-section__label">Best for</p>
+        <div class="detail-chip-grid">
+          ${bestFor.map((item) => `<span class="detail-chip">${escapeHtml(item)}</span>`).join("")}
+        </div>
+      </article>
+
+      <article class="detail-section card-surface">
+        <p class="detail-section__label">How to use</p>
+        <div class="detail-step-grid">
+          <div class="detail-step">
+            <span>01</span>
+            <p>افتح GPT سطور.</p>
+          </div>
+          <div class="detail-step">
+            <span>02</span>
+            <p>اكتب فكرتك أو النص الخام.</p>
+          </div>
+          <div class="detail-step">
+            <span>03</span>
+            <p>احصل على نسخة جاهزة للنشر.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="detail-section card-surface">
+        <p class="detail-section__label">Example prompts</p>
+        <ul class="detail-example-list">
+          ${examplePrompts.map((prompt) => `<li>${escapeHtml(prompt)}</li>`).join("")}
+        </ul>
+      </article>
+
+      <article class="detail-section card-surface">
+        <p class="detail-section__label">Product details</p>
+        <dl class="detail-spec-grid">
+          <div><dt>Product ID</dt><dd>LAF-001</dd></div>
+          <div><dt>Internal Slug</dt><dd>gpt-sotour</dd></div>
+          <div><dt>OpenAI GPT ID</dt><dd>g-6a4d4731b74881918eaaa6f75e5058f9</dd></div>
+          <div><dt>Version</dt><dd>1.0.0</dd></div>
+          <div><dt>Status</dt><dd>Active</dd></div>
+          <div><dt>Category</dt><dd>Writing</dd></div>
+        </dl>
+      </article>
+    </section>
+  `;
 }
 
 function renderDetailPage(gpts) {
@@ -348,76 +459,85 @@ function renderDetailPage(gpts) {
   const slug = getQueryParam("slug");
   const current = gpts.find((gpt) => gpt.slug === slug) || gpts[0];
   if (!current) {
-    detailTarget.innerHTML = `<p class="empty-state">لا توجد بيانات لعرضها الآن.</p>`;
+    detailTarget.innerHTML = `<p class="empty-state">No product data is available right now.</p>`;
     return;
   }
 
-  setSeoMeta({
-    title: `${current.name} | ${SITE_TITLE}`,
-    description: `${current.name} — ${current.shortDescription}`,
-    path: `/gpt.html?slug=${encodeURIComponent(current.slug)}`,
-  });
+  const detailPath = `/gpt.html?slug=${encodeURIComponent(current.slug)}`;
 
-  detailTarget.innerHTML = `
-    <section class="detail-hero card-surface" style="--accent:${current.accent}">
-      <div class="detail-hero__content">
-        <div class="detail-hero__intro">
-          <div class="detail-hero__badge-row">
-            <span class="chip">${escapeHtml(current.category)}</span>
-            <span class="status ${statusClass(current.status)}">${escapeHtml(current.status)}</span>
-            ${officialBadge(current)}
+  if (current.slug === "gpt-sotour") {
+    setSeoMeta({
+      title: `GPT سطور | First Official Product | ${SITE_TITLE}`,
+      description: "GPT سطور هو أول منتج رسمي داخل LAFRYHI GPT Store: مساعد عربي لتحويل الأفكار الخام إلى محتوى جاهز للنشر.",
+      path: detailPath,
+    });
+    detailTarget.innerHTML = renderSotourDetail(current);
+  } else {
+    setSeoMeta({
+      title: `${current.name} | ${SITE_TITLE}`,
+      description: `${current.name} - ${current.shortDescription}`,
+      path: detailPath,
+    });
+
+    detailTarget.innerHTML = `
+      <section class="detail-hero card-surface" style="--accent:${current.accent}">
+        <div class="detail-hero__content">
+          <div class="detail-hero__intro">
+            <div class="detail-hero__badge-row">
+              <span class="chip">${escapeHtml(current.category)}</span>
+              <span class="status ${statusClass(current.status)}">${escapeHtml(current.status)}</span>
+              ${officialBadge(current)}
+            </div>
+            <h1>${escapeHtml(current.name)}</h1>
+            <p class="detail-hero__lead">${escapeHtml(current.shortDescription)}</p>
           </div>
-          <h1>${escapeHtml(current.name)}</h1>
-          <p class="detail-hero__lead">${escapeHtml(current.shortDescription)}</p>
-        </div>
-        <div class="detail-hero__actions">
-          <a class="button button--primary" href="${current.status === "Coming Soon" ? "#" : sanitizeUrl(current.runUrl)}" target="${current.status === "Coming Soon" ? "_self" : "_blank"}" rel="${current.status === "Coming Soon" ? "" : "noreferrer"}" ${current.status === "Coming Soon" ? 'aria-disabled="true" tabindex="-1"' : ""}>${current.status === "Coming Soon" ? "Coming Soon" : "Launch GPT"}</a>
-          <button class="button button--secondary" type="button" data-share-gpt>مشاركة</button>
-        </div>
-      </div>
-      <div class="detail-hero__icon" aria-hidden="true">${escapeHtml(current.icon)}</div>
-    </section>
-    <section class="detail-layout">
-      <div class="detail-main">
-        <article class="detail-section card-surface">
-          <p class="detail-section__label">Overview</p>
-          <p>${escapeHtml(current.longDescription)}</p>
-        </article>
-        <article class="detail-section card-surface">
-          <p class="detail-section__label">Features</p>
-          <div class="feature-grid">
-            ${current.features.map((feature) => `<div class="feature-tile">${escapeHtml(feature)}</div>`).join("")}
-          </div>
-        </article>
-      </div>
-      <aside class="detail-side">
-        <article class="detail-side__card card-surface">
-          <p class="detail-section__label">Status</p>
-          <span class="status ${statusClass(current.status)}">${escapeHtml(current.status)}</span>
-          <p class="detail-side__note">Future launch state is controlled from the central data file.</p>
-        </article>
-        <article class="detail-side__card card-surface">
-          <p class="detail-section__label">Quick Facts</p>
-          <ul class="fact-list">
-            <li><span>Category</span><strong>${escapeHtml(current.category)}</strong></li>
-            <li><span>Features</span><strong>${current.features.length}</strong></li>
-            <li><span>Availability</span><strong>${escapeHtml(current.status)}</strong></li>
-          </ul>
-        </article>
-        <article class="detail-side__card card-surface">
-          <p class="detail-section__label">Actions</p>
-          <div class="detail-side__actions">
+          <div class="detail-hero__actions">
             <a class="button button--primary" href="${current.status === "Coming Soon" ? "#" : sanitizeUrl(current.runUrl)}" target="${current.status === "Coming Soon" ? "_self" : "_blank"}" rel="${current.status === "Coming Soon" ? "" : "noreferrer"}" ${current.status === "Coming Soon" ? 'aria-disabled="true" tabindex="-1"' : ""}>${current.status === "Coming Soon" ? "Coming Soon" : "Launch GPT"}</a>
-            <a class="button button--secondary" href="gpts.html">رجوع إلى GPTs</a>
+            <button class="button button--secondary" type="button" data-share-gpt>Share</button>
           </div>
-        </article>
-      </aside>
-    </section>
-  `;
+        </div>
+        <div class="detail-hero__icon" aria-hidden="true">${escapeHtml(current.icon)}</div>
+      </section>
+      <section class="detail-layout">
+        <div class="detail-main">
+          <article class="detail-section card-surface">
+            <p class="detail-section__label">Overview</p>
+            <p>${escapeHtml(current.longDescription)}</p>
+          </article>
+          <article class="detail-section card-surface">
+            <p class="detail-section__label">Features</p>
+            <div class="feature-grid">
+              ${current.features.map((feature) => `<div class="feature-tile">${escapeHtml(feature)}</div>`).join("")}
+            </div>
+          </article>
+        </div>
+        <aside class="detail-side">
+          <article class="detail-side__card card-surface">
+            <p class="detail-section__label">Status</p>
+            <span class="status ${statusClass(current.status)}">${escapeHtml(current.status)}</span>
+            <p class="detail-side__note">Future launch state is controlled from the central data file.</p>
+          </article>
+          <article class="detail-side__card card-surface">
+            <p class="detail-section__label">Quick Facts</p>
+            <ul class="fact-list">
+              <li><span>Category</span><strong>${escapeHtml(current.category)}</strong></li>
+              <li><span>Features</span><strong>${current.features.length}</strong></li>
+              <li><span>Availability</span><strong>${escapeHtml(current.status)}</strong></li>
+            </ul>
+          </article>
+          <article class="detail-side__card card-surface">
+            <p class="detail-section__label">Actions</p>
+            <div class="detail-side__actions">
+              <a class="button button--primary" href="${current.status === "Coming Soon" ? "#" : sanitizeUrl(current.runUrl)}" target="${current.status === "Coming Soon" ? "_self" : "_blank"}" rel="${current.status === "Coming Soon" ? "" : "noreferrer"}" ${current.status === "Coming Soon" ? 'aria-disabled="true" tabindex="-1"' : ""}>${current.status === "Coming Soon" ? "Coming Soon" : "Launch GPT"}</a>
+              <a class="button button--secondary" href="gpts.html">Back to GPTs</a>
+            </div>
+          </article>
+        </aside>
+      </section>
+    `;
+  }
 
-  const related = gpts
-    .filter((gpt) => gpt.slug !== current.slug && gpt.category === current.category)
-    .slice(0, 3);
+  const related = gpts.filter((gpt) => gpt.slug !== current.slug && gpt.category === current.category).slice(0, 3);
   const fallbackRelated = related.length ? related : gpts.filter((gpt) => gpt.slug !== current.slug).slice(0, 3);
   if (relatedTarget) {
     renderCards(relatedTarget, fallbackRelated, true);
@@ -426,7 +546,7 @@ function renderDetailPage(gpts) {
   const shareButton = detailTarget.querySelector("[data-share-gpt]");
   if (shareButton) {
     shareButton.addEventListener("click", async () => {
-      const shareUrl = absoluteUrl(`/gpt.html?slug=${encodeURIComponent(current.slug)}`);
+      const shareUrl = absoluteUrl(detailPath);
       try {
         if (navigator.share) {
           await navigator.share({
@@ -437,9 +557,9 @@ function renderDetailPage(gpts) {
           return;
         }
         await navigator.clipboard.writeText(shareUrl);
-        shareButton.textContent = "تم النسخ";
+        shareButton.textContent = "Copied";
         window.setTimeout(() => {
-          shareButton.textContent = "مشاركة";
+          shareButton.textContent = "Share";
         }, 1500);
       } catch (error) {
         console.error(error);
