@@ -137,7 +137,9 @@ function statusLabel(status) {
 }
 
 function officialBadge(gpt) {
-  return gpt.slug === "gpt-sotour" ? `<span class="product-badge">First Official Product</span>` : "";
+  return gpt.slug === "gpt-sotour"
+    ? `<span class="product-badge">First Official Product</span><span class="product-badge">Version 1.0</span>`
+    : "";
 }
 
 function loadGpts() {

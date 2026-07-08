@@ -2,10 +2,11 @@
 
 ## v1.0.0
 
-- Created `LAFRYHI GPT Store`.
-- Created the first product: `GPT سطور`.
+- First stable release of `LAFRYHI GPT Store`.
+- Published the first official product: `GPT سطور`.
 - Adopted the product management system.
 - Adopted the `LAF-XXX` product naming standard.
+- Published the Release Notes page.
 
 ## v1.0.1
 
