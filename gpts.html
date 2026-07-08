@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPTs | LAFRYHI GPT Store</title>
+  <meta name="description" content="استعرض جميع GPTs الخاصة بـ LAFRYHI في بطاقات منظمة مع بحث وفلاتر وصفحة تفاصيل لكل أداة.">
+  <link rel="canonical" href="">
+  <meta property="og:title" content="GPTs | LAFRYHI GPT Store">
+  <meta property="og:description" content="استعرض جميع GPTs الخاصة بـ LAFRYHI في بطاقات منظمة مع بحث وفلاتر وصفحة تفاصيل لكل أداة.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="assets/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GPTs | LAFRYHI GPT Store">
+  <meta name="twitter:description" content="استعرض جميع GPTs الخاصة بـ LAFRYHI في بطاقات منظمة مع بحث وفلاتر وصفحة تفاصيل لكل أداة.">
+  <meta name="twitter:image" content="assets/og-image.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body data-page="gpts">
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="index.html" aria-label="LAFRYHI GPT Store">
+        <span class="brand__mark" aria-hidden="true">LG</span>
+        <span class="brand__text">
+          <span class="brand__name">LAFRYHI GPT Store</span>
+          <span class="brand__tag">متجر GPTs وأدوات ذكية</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="التنقل الرئيسي">
+        <a href="index.html">الرئيسية</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="categories.html">Categories</a>
+        <a href="gpts.html" aria-current="page">GPTs</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="container page__intro">
+      <div>
+        <p class="eyebrow">All GPTs</p>
+        <h1>دليل سريع لكل GPT داخل المتجر.</h1>
+        <p class="lead">
+          استخدم البحث أو الفلاتر للوصول إلى الأداة المناسبة بسرعة، ثم افتح صفحة التفاصيل للحصول على
+          وصف أوضح ومميزات أكثر ارتباطًا بالاستخدام الفعلي.
+        </p>
+      </div>
+      <div class="toolbar">
+        <label class="search">
+          <span class="search__label">بحث</span>
+          <input type="search" placeholder="ابحث باسم GPT أو الوصف أو الفئة" data-search-input>
+        </label>
+        <div class="chips" data-category-filters></div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="gpt-grid" data-gpt-grid></div>
+      <p class="empty-state" hidden data-empty-state>لا توجد نتائج مطابقة الآن.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <p class="footer__title">LAFRYHI GPT Store</p>
+        <p class="footer__text">مخصص لعرض GPTs بشكل واضح وقابل للتوسع والنشر لاحقًا.</p>
+      </div>
+      <div>
+        <p class="footer__heading">Pages</p>
+        <a href="index.html">الرئيسية</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="categories.html">Categories</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <p class="footer__heading">Data</p>
+        <p class="footer__text">التعديل يتم من ملف واحد: data/gpts.json</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

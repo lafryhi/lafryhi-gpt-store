@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LAFRYHI GPT Store | Home</title>
+  <meta name="description" content="LAFRYHI GPT Store واجهة شخصية أنيقة لعرض GPTs والأدوات الذكية الخاصة بـ LAFRYHI بشكل منظم وجاهز للنشر.">
+  <link rel="canonical" href="">
+  <meta property="og:title" content="LAFRYHI GPT Store | Home">
+  <meta property="og:description" content="LAFRYHI GPT Store واجهة شخصية أنيقة لعرض GPTs والأدوات الذكية الخاصة بـ LAFRYHI بشكل منظم وجاهز للنشر.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="assets/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LAFRYHI GPT Store | Home">
+  <meta name="twitter:description" content="LAFRYHI GPT Store واجهة شخصية أنيقة لعرض GPTs والأدوات الذكية الخاصة بـ LAFRYHI بشكل منظم وجاهز للنشر.">
+  <meta name="twitter:image" content="assets/og-image.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body data-page="home">
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="index.html" aria-label="LAFRYHI GPT Store">
+        <span class="brand__mark" aria-hidden="true">LG</span>
+        <span class="brand__text">
+          <span class="brand__name">LAFRYHI GPT Store</span>
+          <span class="brand__tag">متجر GPTs وأدوات ذكية</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="التنقل الرئيسي">
+        <a href="index.html" aria-current="page">الرئيسية</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="categories.html">Categories</a>
+        <a href="gpts.html">GPTs</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow">متجر GPTs شخصي</p>
+          <h1>واجهة عرض واضحة وسريعة لمنتجاتك الذكية.</h1>
+          <p class="lead">
+            هذا الموقع يقدّم GPTs الخاصة بك بطريقة احترافية: بطاقة مختصرة، صفحة تفاصيل، وملف بيانات واحد
+            يمكن تحديثه بسهولة. الفكرة هي الانطلاق بسرعة مع أساس نظيف قابل للتوسعة لاحقًا.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="gpts.html">Explore GPTs</a>
+            <a class="button button--secondary" href="contact.html">Request a Custom GPT</a>
+          </div>
+          <div class="hero__stats" aria-label="إحصاءات سريعة">
+            <div class="stat">
+              <span class="stat__value" data-stat-total>8</span>
+              <span class="stat__label">GPTs مدرجة</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value" data-stat-active>0</span>
+              <span class="stat__label">جاهزة الآن</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value" data-stat-categories>0</span>
+              <span class="stat__label">فئات منفصلة</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero__panel">
+          <div class="hero-card hero-card--main">
+            <p class="hero-card__label">فكرة المشروع</p>
+            <h2>مساحة شخصية تعرض أدواتك الذكية بصياغة واضحة ومقنعة.</h2>
+            <p>
+              كل بطاقة تعرض الاسم والوصف والحالة والفئة والرابط المباشر، بينما صفحة التفاصيل تمنح
+              الزائر صورة أعمق عن قيمة كل GPT وما يقدمه.
+            </p>
+          </div>
+          <div class="hero-card hero-card--accent">
+            <p class="hero-card__label">آلية التحديث</p>
+            <p>إدارة المحتوى تتم من ملف واحد: <strong>gpts.json</strong>.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container section__card">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Featured GPTs</p>
+            <h2>أبرز الأدوات التي تعطي المشروع صورته الأولى.</h2>
+          </div>
+          <a class="text-link" href="gpts.html">عرض جميع GPTs</a>
+        </div>
+        <div class="gpt-grid gpt-grid--featured" data-featured-gpts></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container section__card section__card--soft">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">كيف يعمل</p>
+            <h2>بنية مباشرة وسهلة الصيانة.</h2>
+          </div>
+        </div>
+        <div class="steps">
+          <article class="step-card">
+            <span class="step-card__index">01</span>
+            <h3>أضف أو عدّل بيانات GPT من JSON</h3>
+            <p>المحتوى الأساسي موجود في ملف واحد، وهذا يجعل التحديثات السريعة سهلة وآمنة.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-card__index">02</span>
+            <h3>اعرضه كبطاقات واضحة</h3>
+            <p>كل GPT يظهر مع الحالة والفئة والمميزات الأساسية وزر التشغيل أو التفاصيل.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-card__index">03</span>
+            <h3>افتح صفحة تفاصيل مستقلة</h3>
+            <p>كل بطاقة تقود إلى صفحة يمكن مشاركتها وربطها مباشرة من أي مكان.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <p class="footer__title">LAFRYHI GPT Store</p>
+        <p class="footer__text">واجهة شخصية لعرض GPTs والأدوات الذكية الخاصة بك بشكل احترافي.</p>
+      </div>
+      <div>
+        <p class="footer__heading">Pages</p>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="categories.html">Categories</a>
+        <a href="gpts.html">GPTs</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <p class="footer__heading">Project</p>
+        <p class="footer__text">MVP قابل للتطوير لاحقًا على الدومين الخاص بك.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "LAFRYHI GPT Store",
+  "short_name": "LAFRYHI GPT",
+  "description": "A personal store for publishing and browsing GPT tools by LAFRYHI.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "dir": "rtl",
+  "lang": "ar",
+  "theme_color": "#0f766e",
+  "background_color": "#f5f7fb",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

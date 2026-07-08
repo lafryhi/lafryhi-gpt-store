@@ -1,0 +1,138 @@
+[
+  {
+    "slug": "ai-radar",
+    "name": "AI Radar",
+    "shortDescription": "يرصد أدوات الذكاء الاصطناعي الجديدة ويختصرها لك بسرعة.",
+    "longDescription": "AI Radar هو GPT مخصص لمتابعة أخبار واتجاهات الذكاء الاصطناعي، واستخراج أهم الأدوات والميزات والفرص بطريقة عملية وسهلة القراءة.",
+    "category": "Research",
+    "runUrl": "#",
+    "icon": "AR",
+    "accent": "#0f766e",
+    "status": "Coming Soon",
+    "featured": true,
+    "features": [
+      "متابعة الاتجاهات الجديدة",
+      "تلخيص سريع ومركّز",
+      "تحويل الأخبار إلى فرص عملية"
+    ]
+  },
+  {
+    "slug": "lafryhi-operator-gpt",
+    "name": "LAFRYHI Operator GPT",
+    "shortDescription": "مساعد تشغيل وإدارة مهام ينسّق العمل بوضوح.",
+    "longDescription": "هذا GPT مخصص للعمل التشغيلي: ترتيب المهام، صياغة الخطوات، وتجميع الأوامر أو التوجيهات اليومية في شكل منظم.",
+    "category": "Automation",
+    "runUrl": "#",
+    "icon": "LO",
+    "accent": "#2563eb",
+    "status": "Coming Soon",
+    "featured": true,
+    "features": [
+      "تنظيم المهام اليومية",
+      "صياغة أوامر العمل",
+      "إدارة سياق العمليات"
+    ]
+  },
+  {
+    "slug": "gpt-sotour",
+    "name": "GPT سطور",
+    "shortDescription": "كاتب عربي يركز على الجمل القصيرة والنصوص النظيفة.",
+    "longDescription": "GPT سطور يساعدك في كتابة نصوص عربية قصيرة، واضحة، ومهيأة للاستخدام في المنشورات والعناوين والنسخ التسويقية.",
+    "category": "Writing",
+    "runUrl": "https://chatgpt.com/g/g-6a4d4731b74881918eaaa6f75e5058f9-gpt-stwr",
+    "icon": "س",
+    "accent": "#b45309",
+    "status": "Active",
+    "featured": true,
+    "features": [
+      "صياغة عربية واضحة",
+      "نصوص قصيرة وقوية",
+      "مناسب للعناوين والنسخ"
+    ]
+  },
+  {
+    "slug": "app-ideas-gpt",
+    "name": "App Ideas GPT",
+    "shortDescription": "يولّد أفكار تطبيقات مع تصور أولي للفئات والميزات.",
+    "longDescription": "App Ideas GPT يحوّل أي فكرة عامة إلى اقتراحات تطبيقات عملية، مع فئات مستخدمين، وظائف أساسية، وخطوات أولية للبناء.",
+    "category": "Product",
+    "runUrl": "#",
+    "icon": "AI",
+    "accent": "#7c3aed",
+    "status": "Coming Soon",
+    "featured": false,
+    "features": [
+      "اقتراح أفكار جديدة",
+      "تحديد الميزات الأساسية",
+      "تخطيط أولي سريع"
+    ]
+  },
+  {
+    "slug": "codex-assistant",
+    "name": "Codex Assistant",
+    "shortDescription": "مساعد برمجة للتفكير في الكود والحلول السريعة.",
+    "longDescription": "Codex Assistant مخصص للمطورين: قراءة المشاكل، اقتراح حلول عملية، وتنظيم العمل البرمجي في خطوات مختصرة وواضحة.",
+    "category": "Development",
+    "runUrl": "#",
+    "icon": "CA",
+    "accent": "#dc2626",
+    "status": "Coming Soon",
+    "featured": true,
+    "features": [
+      "مساعدة في الكود",
+      "تحليل سريع للمشاكل",
+      "توجيه عملي للتنفيذ"
+    ]
+  },
+  {
+    "slug": "google-play-policy-helper",
+    "name": "Google Play Policy Helper",
+    "shortDescription": "يفسر سياسات Google Play ويشير إلى النقاط الحساسة.",
+    "longDescription": "GPT يساعدك على فهم سياسات النشر في Google Play، وتقليل المخاطر قبل الإرسال عبر تقديم ملاحظات مبسطة ومباشرة.",
+    "category": "Compliance",
+    "runUrl": "#",
+    "icon": "GP",
+    "accent": "#0f172a",
+    "status": "Coming Soon",
+    "featured": false,
+    "features": [
+      "شرح السياسات",
+      "فحص المخاطر الشائعة",
+      "مساعدة قبل النشر"
+    ]
+  },
+  {
+    "slug": "facebook-post-writer",
+    "name": "Facebook Post Writer",
+    "shortDescription": "كاتب منشورات اجتماعية بأسلوب واضح وسريع.",
+    "longDescription": "Facebook Post Writer ينشئ منشورات جاهزة للنشر، مع نبرة مناسبة للجمهور، ورسائل مختصرة، وصيغ متعددة حسب الهدف.",
+    "category": "Marketing",
+    "runUrl": "#",
+    "icon": "FB",
+    "accent": "#0891b2",
+    "status": "Coming Soon",
+    "featured": false,
+    "features": [
+      "كتابة منشورات",
+      "تغيير النبرة بسهولة",
+      "اقتراح أكثر من صيغة"
+    ]
+  },
+  {
+    "slug": "driving-apps-assistant",
+    "name": "Driving Apps Assistant",
+    "shortDescription": "مساعد لأفكار وتطبيقات مرتبطة بالقيادة والتعليم المروري.",
+    "longDescription": "Driving Apps Assistant مناسب لأي مشروع يتعلق بالقيادة أو التدريب أو الاختبارات المرورية، مع أفكار عملية وتجهيز مبدئي للمحتوى.",
+    "category": "Mobility",
+    "runUrl": "#",
+    "icon": "DA",
+    "accent": "#16a34a",
+    "status": "Coming Soon",
+    "featured": false,
+    "features": [
+      "أفكار تطبيقات قيادية",
+      "تجهيز محتوى تعليمي",
+      "رؤية أولية للمشروع"
+    ]
+  }
+]

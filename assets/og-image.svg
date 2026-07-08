@@ -1,0 +1,16 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="48" fill="#F5F7FB"/>
+  <circle cx="1020" cy="110" r="180" fill="#0F766E" fill-opacity="0.12"/>
+  <circle cx="160" cy="520" r="220" fill="#2563EB" fill-opacity="0.10"/>
+  <rect x="96" y="96" width="1008" height="438" rx="36" fill="white" stroke="#D7DFEA"/>
+  <rect x="136" y="136" width="106" height="106" rx="28" fill="#0F766E"/>
+  <path d="M170 168H208V204H170V168Z" fill="white"/>
+  <text x="270" y="180" fill="#0F172A" font-size="42" font-family="Arial, sans-serif" font-weight="700">LAFRYHI GPT Store</text>
+  <text x="270" y="235" fill="#475569" font-size="28" font-family="Arial, sans-serif">A personal storefront for smart GPT tools</text>
+  <rect x="136" y="290" width="920" height="18" rx="9" fill="#E5EBF2"/>
+  <rect x="136" y="328" width="760" height="18" rx="9" fill="#E5EBF2"/>
+  <rect x="136" y="380" width="262" height="56" rx="28" fill="#0F766E"/>
+  <text x="182" y="418" fill="white" font-size="24" font-family="Arial, sans-serif" font-weight="700">Explore GPTs</text>
+  <rect x="412" y="380" width="330" height="56" rx="28" fill="#FFFFFF" stroke="#D7DFEA"/>
+  <text x="458" y="418" fill="#0F172A" font-size="24" font-family="Arial, sans-serif" font-weight="700">Request a Custom GPT</text>
+</svg>
