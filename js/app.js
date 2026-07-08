@@ -204,15 +204,10 @@ function updateStats(gpts) {
 }
 
 function renderHome(gpts) {
-  const featuredTarget = document.querySelector("[data-featured-gpts]");
-  if (featuredTarget) {
-    const featured = gpts.filter((gpt) => gpt.featured).slice(0, 3);
-    renderCards(featuredTarget, featured, true);
-  }
   updateStats(gpts);
   setSeoMeta({
-    title: `${SITE_TITLE} | Home`,
-    description: SITE_DESCRIPTION,
+    title: `LAFRYHI GPT Store | GPT سطور والمنتجات الرسمية`,
+    description: "واجهة رسمية لعرض GPTs والأدوات الذكية الجاهزة للاستخدام، تبدأ بـ GPT سطور كأول منتج رسمي داخل LAFRYHI GPT Store.",
     path: "/",
   });
 }
