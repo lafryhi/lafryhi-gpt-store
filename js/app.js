@@ -117,6 +117,17 @@ function setSeoMeta({ title, description, path, image = SITE_IMAGE, type = "webs
   twitterImage.content = absoluteUrl(image);
 }
 
+function setJsonLd(id, data) {
+  let script = document.getElementById(id);
+  if (!script) {
+    script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = id;
+    document.head.appendChild(script);
+  }
+  script.textContent = JSON.stringify(data);
+}
+
 function statusClass(status) {
   return status === "Coming Soon" ? "status--soon" : "status--active";
 }
@@ -201,6 +212,21 @@ function updateStats(gpts) {
 
 function renderHome(gpts) {
   updateStats(gpts);
+  setJsonLd("jsonld-organization", {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "LAFRYHI GPT Store",
+    url: "https://lafryhi.com/",
+    logo: absoluteUrl("assets/favicon.svg"),
+    description: SITE_DESCRIPTION,
+  });
+  setJsonLd("jsonld-website", {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "LAFRYHI GPT Store",
+    url: "https://lafryhi.com/",
+    description: SITE_DESCRIPTION,
+  });
   setSeoMeta({
     title: "LAFRYHI GPT Store | GPT سطور والمنتجات الرسمية",
     description: "واجهة رسمية لعرض GPTs والأدوات الذكية الجاهزة للاستخدام، تبدأ بـ GPT سطور كأول منتج رسمي داخل LAFRYHI GPT Store.",
@@ -470,6 +496,37 @@ function renderDetailPage(gpts) {
       title: `GPT سطور | First Official Product | ${SITE_TITLE}`,
       description: "GPT سطور هو أول منتج رسمي داخل LAFRYHI GPT Store: مساعد عربي لتحويل الأفكار الخام إلى محتوى جاهز للنشر.",
       path: detailPath,
+    });
+    setJsonLd("jsonld-breadcrumb", {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://lafryhi.com/" },
+        { "@type": "ListItem", position: 2, name: "GPTs", item: "https://lafryhi.com/gpts.html" },
+        { "@type": "ListItem", position: 3, name: "GPT سطور", item: absoluteUrl(detailPath) },
+      ],
+    });
+    setJsonLd("jsonld-product", {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: "GPT سطور",
+      sku: "LAF-001",
+      description: "مساعد عربي لتحويل الأفكار الخام والنصوص البسيطة إلى محتوى جاهز للنشر.",
+      category: "Writing",
+      url: "https://chatgpt.com/g/g-6a4d4731b74881918eaaa6f75e5058f9-gpt-stwr",
+      image: absoluteUrl("assets/og-image.svg"),
+      brand: {
+        "@type": "Brand",
+        name: "LAFRYHI",
+      },
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        url: "https://chatgpt.com/g/g-6a4d4731b74881918eaaa6f75e5058f9-gpt-stwr",
+      },
+      isAccessibleForFree: true,
     });
     detailTarget.innerHTML = renderSotourDetail(current);
   } else {
