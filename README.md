@@ -27,15 +27,10 @@
 شغّل الموقع عبر خادم محلي حتى يعمل تحميل `gpts.json` بشكل صحيح:
 
 ```powershell
-cd "C:\Users\LAFRYHIELMOSTAFA\Desktop\LAFRYHI GPT Store"
 python -m http.server 4173
 ```
 
-ثم افتح:
-
-```text
-http://localhost:4173
-```
+Then open the local server URL provided by your terminal.
 
 ## تعديل المحتوى
 
@@ -96,4 +91,4 @@ http://localhost:4173
 
 - هذا المشروع لا يستخدم Vite أو أي build system.
 - يمكن تطويره لاحقًا إلى نسخة أقوى دون كسر البنية الحالية.
-- إذا فتحت الموقع مباشرة عبر `file://` فقد لا يعمل تحميل `gpts.json`؛ استخدم خادمًا محليًا أو استضافة فعلية.
+- إذا فتحت الموقع مباشرة من نظام الملفات فقد لا يعمل تحميل `gpts.json`؛ استخدم خادمًا محليًا أو استضافة فعلية.

@@ -1,7 +1,205 @@
-const DATA_URL = "data/gpts.json";
+﻿const DATA_URL = "data/gpts.json";
 const SITE_TITLE = "LAFRYHI GPT Store";
 const SITE_DESCRIPTION = "LAFRYHI GPT Store هو متجر شخصي لعرض GPTs والأدوات الذكية الخاصة بـ LAFRYHI بشكل واضح واحترافي.";
 const SITE_IMAGE = "assets/og-image.svg";
+const PREFERS_REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const DEFAULT_THEME = {
+  primary: "#1677FF",
+  secondary: "#22D3EE",
+  glow: "rgba(34, 211, 238, 0.24)",
+  cardBase: "#F8FBFF",
+  cardBase2: "#ECFEFF",
+  border: "rgba(34, 211, 238, 0.18)",
+};
+
+const VISUAL_THEMES = {
+  "ai-radar": {
+    primary: "#0EA5E9",
+    secondary: "#22D3EE",
+    glow: "rgba(34, 211, 238, 0.26)",
+    cardBase: "#F8FBFF",
+    cardBase2: "#ECFEFF",
+    border: "rgba(14, 165, 233, 0.2)",
+  },
+  "gpt-sotour": {
+    primary: "#F59E0B",
+    secondary: "#FFD43B",
+    glow: "rgba(245, 158, 11, 0.26)",
+    cardBase: "#FFF7ED",
+    cardBase2: "#FFFBEB",
+    border: "rgba(245, 158, 11, 0.2)",
+  },
+  "lafryhi-operator-gpt": {
+    primary: "#8B5CF6",
+    secondary: "#C084FC",
+    glow: "rgba(139, 92, 246, 0.26)",
+    cardBase: "#F5F3FF",
+    cardBase2: "#FDF4FF",
+    border: "rgba(139, 92, 246, 0.2)",
+  },
+  "app-ideas-gpt": {
+    primary: "#22C55E",
+    secondary: "#86EFAC",
+    glow: "rgba(34, 197, 94, 0.24)",
+    cardBase: "#F0FDF4",
+    cardBase2: "#ECFEFF",
+    border: "rgba(34, 197, 94, 0.18)",
+  },
+  "codex-assistant": {
+    primary: "#4F46E5",
+    secondary: "#60A5FA",
+    glow: "rgba(79, 70, 229, 0.24)",
+    cardBase: "#EEF2FF",
+    cardBase2: "#F8FBFF",
+    border: "rgba(79, 70, 229, 0.2)",
+  },
+  "google-play-policy-helper": {
+    primary: "#16A34A",
+    secondary: "#2DD4BF",
+    glow: "rgba(45, 212, 191, 0.24)",
+    cardBase: "#F0FDF4",
+    cardBase2: "#ECFEFF",
+    border: "rgba(22, 163, 74, 0.18)",
+  },
+  "facebook-post-writer": {
+    primary: "#2563EB",
+    secondary: "#EC4899",
+    glow: "rgba(236, 72, 153, 0.24)",
+    cardBase: "#FFF1F2",
+    cardBase2: "#EFF6FF",
+    border: "rgba(236, 72, 153, 0.18)",
+  },
+  "driving-apps-assistant": {
+    primary: "#F97316",
+    secondary: "#EF4444",
+    glow: "rgba(249, 115, 22, 0.24)",
+    cardBase: "#FFF7ED",
+    cardBase2: "#FFF1F2",
+    border: "rgba(249, 115, 22, 0.18)",
+  },
+};
+
+const CATEGORY_THEMES = {
+  Research: {
+    primary: "#0EA5E9",
+    secondary: "#22D3EE",
+    glow: "rgba(34, 211, 238, 0.22)",
+    cardBase: "#F8FBFF",
+    cardBase2: "#ECFEFF",
+    border: "rgba(14, 165, 233, 0.18)",
+  },
+  Automation: {
+    primary: "#8B5CF6",
+    secondary: "#F472B6",
+    glow: "rgba(139, 92, 246, 0.22)",
+    cardBase: "#F5F3FF",
+    cardBase2: "#FFF1F2",
+    border: "rgba(139, 92, 246, 0.18)",
+  },
+  Writing: {
+    primary: "#F59E0B",
+    secondary: "#FFD43B",
+    glow: "rgba(245, 158, 11, 0.22)",
+    cardBase: "#FFF7ED",
+    cardBase2: "#FFFBEB",
+    border: "rgba(245, 158, 11, 0.18)",
+  },
+  Product: {
+    primary: "#22C55E",
+    secondary: "#94D82D",
+    glow: "rgba(34, 197, 94, 0.22)",
+    cardBase: "#F0FDF4",
+    cardBase2: "#ECFEFF",
+    border: "rgba(34, 197, 94, 0.18)",
+  },
+  Development: {
+    primary: "#6366F1",
+    secondary: "#38BDF8",
+    glow: "rgba(99, 102, 241, 0.22)",
+    cardBase: "#EEF2FF",
+    cardBase2: "#F8FBFF",
+    border: "rgba(99, 102, 241, 0.18)",
+  },
+  Compliance: {
+    primary: "#16A34A",
+    secondary: "#2DD4BF",
+    glow: "rgba(45, 212, 191, 0.22)",
+    cardBase: "#F0FDF4",
+    cardBase2: "#ECFEFF",
+    border: "rgba(22, 163, 74, 0.18)",
+  },
+  Marketing: {
+    primary: "#2563EB",
+    secondary: "#EC4899",
+    glow: "rgba(236, 72, 153, 0.22)",
+    cardBase: "#EFF6FF",
+    cardBase2: "#FFF1F2",
+    border: "rgba(236, 72, 153, 0.18)",
+  },
+  Mobility: {
+    primary: "#F97316",
+    secondary: "#EF4444",
+    glow: "rgba(249, 115, 22, 0.22)",
+    cardBase: "#FFF7ED",
+    cardBase2: "#FFF1F2",
+    border: "rgba(249, 115, 22, 0.18)",
+  },
+};
+
+document.documentElement.classList.add("js");
+
+function themeForSlug(slug) {
+  return VISUAL_THEMES[slug] || DEFAULT_THEME;
+}
+
+function themeForGpt(gpt) {
+  return themeForSlug(gpt?.slug);
+}
+
+function themeStyle(theme) {
+  return `--accent:${theme.primary};--accent-2:${theme.secondary};--glow:${theme.glow};--card-base:${theme.cardBase};--card-base-2:${theme.cardBase2};--card-border:${theme.border};`;
+}
+
+function themeStyleForGpt(gpt) {
+  return themeStyle(themeForGpt(gpt));
+}
+
+function themeStyleForCategory(category, index = 0) {
+  const fallbackThemes = [
+    DEFAULT_THEME,
+    {
+      primary: "#8B5CF6",
+      secondary: "#F472B6",
+      glow: "rgba(139, 92, 246, 0.22)",
+      cardBase: "#F5F3FF",
+      cardBase2: "#FFF1F2",
+      border: "rgba(139, 92, 246, 0.18)",
+    },
+    {
+      primary: "#22C55E",
+      secondary: "#94D82D",
+      glow: "rgba(34, 197, 94, 0.22)",
+      cardBase: "#F0FDF4",
+      cardBase2: "#ECFEFF",
+      border: "rgba(34, 197, 94, 0.18)",
+    },
+    {
+      primary: "#F59E0B",
+      secondary: "#FFD43B",
+      glow: "rgba(245, 185, 66, 0.22)",
+      cardBase: "#FFF7ED",
+      cardBase2: "#FFFBEB",
+      border: "rgba(245, 158, 11, 0.18)",
+    },
+  ];
+  const theme = CATEGORY_THEMES[category] || fallbackThemes[index % fallbackThemes.length];
+  return themeStyle(theme);
+}
+
+function categoryCountLabel(items) {
+  return `${items.length} GPT${items.length === 1 ? "" : "s"}`;
+}
 
 function escapeHtml(value) {
   return String(value)
@@ -25,6 +223,67 @@ function getQueryParam(name) {
 
 function absoluteUrl(path = window.location.pathname + window.location.search) {
   return new URL(path, window.location.origin).href;
+}
+
+function observeReveals() {
+  const targets = document.querySelectorAll("[data-reveal]");
+  if (!targets.length) return;
+
+  if (PREFERS_REDUCED_MOTION || !("IntersectionObserver" in window)) {
+    targets.forEach((target) => target.classList.add("is-revealed"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-revealed");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      rootMargin: "0px 0px -8% 0px",
+      threshold: 0.12,
+    },
+  );
+
+  targets.forEach((target) => {
+    if (target.dataset.observeBound === "true") return;
+    target.dataset.observeBound = "true";
+    observer.observe(target);
+  });
+}
+
+function attachButtonRipples() {
+  if (PREFERS_REDUCED_MOTION) return;
+
+  document.addEventListener("pointerdown", (event) => {
+    const button = event.target.closest(".button");
+    if (!button || button.matches('[aria-disabled="true"]')) return;
+
+    const rect = button.getBoundingClientRect();
+    const ripple = document.createElement("span");
+    const size = Math.max(rect.width, rect.height) * 1.4;
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+
+    ripple.className = "button__ripple";
+    ripple.style.width = `${size}px`;
+    ripple.style.height = `${size}px`;
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+
+    button.appendChild(ripple);
+    ripple.addEventListener(
+      "animationend",
+      () => {
+        ripple.remove();
+      },
+      { once: true },
+    );
+  });
 }
 
 function getMetaElement(selector, factory) {
@@ -157,7 +416,7 @@ function cardMarkup(gpt, compact = false) {
   const disabled = gpt.status === "Coming Soon";
 
   return `
-    <article class="gpt-card" style="--accent:${gpt.accent}">
+    <article class="gpt-card ${compact ? "gpt-card--compact" : ""}" data-reveal style="${themeStyleForGpt(gpt)}">
       <div class="gpt-card__top">
         <div class="gpt-card__icon" aria-hidden="true">${escapeHtml(gpt.icon)}</div>
         <div class="gpt-card__meta">
@@ -175,6 +434,53 @@ function cardMarkup(gpt, compact = false) {
         <a class="button button--secondary button--small" href="gpt.html?slug=${encodeURIComponent(gpt.slug)}">تفاصيل</a>
         <a class="button button--primary button--small" href="${disabled ? "#" : runHref}" target="${disabled ? "_self" : "_blank"}" rel="${disabled ? "" : "noreferrer"}" ${disabled ? 'aria-disabled="true" tabindex="-1"' : ""}>${disabled ? "Coming Soon" : "Launch GPT"}</a>
       </div>
+    </article>
+  `;
+}
+
+function homeFeaturedMarkup(gpt) {
+  const runHref = sanitizeUrl(gpt.runUrl);
+  const disabled = gpt.status === "Coming Soon";
+
+  return `
+    <article class="home-featured card-surface" data-reveal style="${themeStyleForGpt(gpt)}">
+      <div class="home-featured__copy">
+        <div class="gpt-card__row">
+          <span class="chip">${escapeHtml(gpt.category)}</span>
+          ${statusLabel(gpt.status)}
+          ${officialBadge(gpt)}
+        </div>
+        <p class="home-featured__eyebrow">Featured GPT</p>
+        <h3>${escapeHtml(gpt.name)}</h3>
+        <p class="home-featured__description">${escapeHtml(gpt.shortDescription)}</p>
+        <div class="home-featured__actions">
+          <a class="button button--primary button--small" href="${disabled ? "#" : runHref}" target="${disabled ? "_self" : "_blank"}" rel="${disabled ? "" : "noreferrer"}" ${disabled ? 'aria-disabled="true" tabindex="-1"' : ""}>${disabled ? "Coming Soon" : "Open GPT"}</a>
+          <a class="button button--secondary button--small" href="gpt.html?slug=${encodeURIComponent(gpt.slug)}">View Details</a>
+        </div>
+      </div>
+      <div class="home-featured__visual" aria-hidden="true">
+        <div class="home-featured__icon">${escapeHtml(gpt.icon)}</div>
+        <p class="home-featured__note">${escapeHtml(gpt.name)} ready for launch.</p>
+      </div>
+    </article>
+  `;
+}
+
+function homeCategoryMarkup(name, items, index) {
+  const theme = themeStyleForCategory(name, index);
+  const preview = items.slice(0, 2).map((item) => escapeHtml(item.name)).join(" &middot; ");
+
+  return `
+    <article class="home-category-card card-surface" data-reveal style="${theme}">
+      <div class="home-category-card__head">
+        <div>
+          <p class="detail-section__label">Category</p>
+          <h3>${escapeHtml(name)}</h3>
+        </div>
+        <span class="home-category-card__count">${items.length}</span>
+      </div>
+      <p class="home-category-card__copy">${preview}</p>
+      <a class="text-link" href="gpts.html?category=${encodeURIComponent(name)}">Browse GPTs</a>
     </article>
   `;
 }
@@ -214,6 +520,24 @@ function updateStats(gpts) {
 
 function renderHome(gpts) {
   updateStats(gpts);
+  const featuredTarget = document.querySelector("[data-home-featured]");
+  const featuredRail = document.querySelector("[data-home-featured-rail]");
+  const latestTarget = document.querySelector("[data-home-latest]");
+  const categoriesTarget = document.querySelector("[data-home-categories]");
+
+  const mainFeatured =
+    gpts.find((gpt) => gpt.slug === "gpt-sotour") ||
+    gpts.find((gpt) => gpt.featured && gpt.status === "Active") ||
+    gpts.find((gpt) => gpt.featured) ||
+    gpts[0];
+  const featuredSet = gpts.filter((gpt) => gpt.featured && gpt.slug !== mainFeatured?.slug);
+  const latestSet = gpts.filter((gpt) => gpt.slug !== mainFeatured?.slug).slice(0, 4);
+  const categoryBuckets = gpts.reduce((acc, gpt) => {
+    if (!acc[gpt.category]) acc[gpt.category] = [];
+    acc[gpt.category].push(gpt);
+    return acc;
+  }, {});
+
   setJsonLd("jsonld-organization", {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -230,10 +554,26 @@ function renderHome(gpts) {
     description: SITE_DESCRIPTION,
   });
   setSeoMeta({
-    title: "LAFRYHI GPT Store | GPT سطور والمنتجات الرسمية",
-    description: "واجهة رسمية لعرض GPTs والأدوات الذكية الجاهزة للاستخدام، تبدأ بـ GPT سطور كأول منتج رسمي داخل LAFRYHI GPT Store.",
+    title: "LAFRYHI GPT Store | Bright AI Showcase",
+    description: "واجهة مشرقة لعرض GPTs والأدوات الذكية الخاصة بـ LAFRYHI بتجربة RTL واضحة، حديثة، وملونة.",
     path: "/",
   });
+
+  if (featuredTarget && mainFeatured) {
+    featuredTarget.innerHTML = homeFeaturedMarkup(mainFeatured);
+  }
+  if (featuredRail) {
+    featuredRail.innerHTML = featuredSet.slice(0, 2).map((gpt) => cardMarkup(gpt, true)).join("");
+  }
+  if (latestTarget) {
+    latestTarget.innerHTML = latestSet.map((gpt) => cardMarkup(gpt)).join("");
+  }
+  if (categoriesTarget) {
+    const categories = Object.entries(categoryBuckets);
+    categoriesTarget.innerHTML = categories.map(([name, items], index) => homeCategoryMarkup(name, items, index)).join("");
+  }
+
+  observeReveals();
 }
 
 function renderGptsPage(gpts) {
@@ -277,7 +617,7 @@ function renderGptsPage(gpts) {
 
   sync();
   setSeoMeta({
-    title: `All GPTs | ${SITE_TITLE}`,
+    title: `All GPTs | Bright AI Showcase`,
     description: "تصفح جميع GPTs والأدوات الذكية الخاصة بـ LAFRYHI مع البحث والفلاتر وصفحات التفاصيل.",
     path: "/gpts.html",
   });
@@ -304,7 +644,7 @@ function renderDashboardPage(gpts) {
   grid.innerHTML = metrics
     .map(
       (item) => `
-        <article class="metric-card card-surface">
+        <article class="metric-card card-surface" data-reveal>
           <p class="metric-card__label">${escapeHtml(item.label)}</p>
           <p class="metric-card__value">${escapeHtml(item.value)}</p>
           <p class="metric-card__hint">${escapeHtml(item.hint)}</p>
@@ -314,12 +654,12 @@ function renderDashboardPage(gpts) {
     .join("");
 
   spotlight.innerHTML = `
-    <article class="insight-card card-surface">
+    <article class="insight-card card-surface" data-reveal>
       <p class="detail-section__label">Platform snapshot</p>
       <h2>${total} GPTs organized across ${categoryCount} categories.</h2>
       <p>This dashboard gives a quick view of the store's structure, launch readiness, and content balance.</p>
     </article>
-    <article class="insight-card card-surface">
+    <article class="insight-card card-surface" data-reveal>
       <p class="detail-section__label">Featured set</p>
       <h2>${featuredCount} featured tools ready for promotion.</h2>
       <p>Use the featured list to highlight the strongest tools and guide the first marketing push.</p>
@@ -349,8 +689,8 @@ function renderCategoriesPage(gpts) {
 
   target.innerHTML = categories
     .map(
-      (category) => `
-        <article class="category-card card-surface">
+      (category, index) => `
+        <article class="category-card card-surface" data-reveal style="${themeStyleForCategory(category.name, index)}">
           <div class="category-card__head">
             <div>
               <p class="detail-section__label">Category</p>
@@ -366,7 +706,7 @@ function renderCategoriesPage(gpts) {
     .join("");
 
   setSeoMeta({
-    title: `Categories | ${SITE_TITLE}`,
+    title: `Categories | Bright AI Showcase`,
     description: "استعرض الفئات المختلفة داخل LAFRYHI GPT Store وعدد الأدوات في كل فئة.",
     path: "/categories.html",
   });
@@ -391,7 +731,7 @@ function renderSotourDetail(current) {
   ];
 
   return `
-    <section class="detail-hero card-surface detail-hero--featured" style="--accent:${current.accent}">
+    <section class="detail-hero card-surface detail-hero--featured" data-reveal style="${themeStyleForGpt(current)}">
       <div class="detail-hero__content detail-hero__content--featured">
         <div class="detail-hero__intro">
           <div class="detail-hero__badge-row">
@@ -495,7 +835,7 @@ function renderDetailPage(gpts) {
 
   if (current.slug === "gpt-sotour") {
     setSeoMeta({
-      title: `GPT سطور | First Official Product | ${SITE_TITLE}`,
+      title: `GPT سطور | Bright AI Showcase`,
       description: "GPT سطور هو أول منتج رسمي داخل LAFRYHI GPT Store: مساعد عربي لتحويل الأفكار الخام إلى محتوى جاهز للنشر.",
       path: detailPath,
     });
@@ -533,13 +873,13 @@ function renderDetailPage(gpts) {
     detailTarget.innerHTML = renderSotourDetail(current);
   } else {
     setSeoMeta({
-      title: `${current.name} | ${SITE_TITLE}`,
+      title: `${current.name} | Bright AI Showcase`,
       description: `${current.name} - ${current.shortDescription}`,
       path: detailPath,
     });
 
     detailTarget.innerHTML = `
-      <section class="detail-hero card-surface" style="--accent:${current.accent}">
+      <section class="detail-hero card-surface" data-reveal style="${themeStyleForGpt(current)}">
         <div class="detail-hero__content">
           <div class="detail-hero__intro">
             <div class="detail-hero__badge-row">
@@ -659,6 +999,9 @@ async function boot() {
         event.preventDefault();
       }
     });
+
+    attachButtonRipples();
+    observeReveals();
   } catch (error) {
     console.error(error);
     const fallbackDetail = document.querySelector("[data-gpt-detail]");
@@ -673,3 +1016,4 @@ async function boot() {
 }
 
 boot();
+
