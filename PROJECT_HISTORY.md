@@ -45,6 +45,15 @@ It is the historical source of truth for major design and implementation decisio
 **Status:** Completed  
 **Result:** The approved bright visual identity was applied consistently to `gpts.html`, `gpt.html`, and `categories.html` using the same shared tokens, cards, buttons, and background language from the homepage.
 
+## Milestone 005
+
+**Title:** Bright Redesign Published to Production  
+**Date:** 2026-07-10  
+**Status:** Completed  
+**Deployment Method:** GitHub push to `main` on the existing Vercel-linked production setup  
+**Production URL:** https://lafryhi.com/  
+**Result:** The bright redesign is live in production, and the homepage, GPT catalog, GPT detail page, categories page, mobile layout, and console checks all passed during verification.
+
 ## Notes
 
 - New milestones should be appended here in chronological order.
