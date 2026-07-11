@@ -401,6 +401,13 @@ function officialBadge(gpt) {
     : "";
 }
 
+function actionLabel(gpt) {
+  if (gpt.status === "Coming Soon") {
+    return "Coming Soon";
+  }
+  return gpt.ctaLabel || "Launch GPT";
+}
+
 function loadGpts() {
   return fetch(DATA_URL, { cache: "no-store" }).then((response) => {
     if (!response.ok) {
@@ -432,7 +439,7 @@ function cardMarkup(gpt, compact = false) {
       <ul class="feature-list">${features}</ul>
       <div class="gpt-card__actions">
         <a class="button button--secondary button--small" href="gpt.html?slug=${encodeURIComponent(gpt.slug)}">تفاصيل</a>
-        <a class="button button--primary button--small" href="${disabled ? "#" : runHref}" target="${disabled ? "_self" : "_blank"}" rel="${disabled ? "" : "noreferrer"}" ${disabled ? 'aria-disabled="true" tabindex="-1"' : ""}>${disabled ? "Coming Soon" : "Launch GPT"}</a>
+        <a class="button button--primary button--small" href="${disabled ? "#" : runHref}" target="${disabled ? "_self" : "_blank"}" rel="${disabled ? "" : "noreferrer"}" ${disabled ? 'aria-disabled="true" tabindex="-1"' : ""}>${actionLabel(gpt)}</a>
       </div>
     </article>
   `;
@@ -891,7 +898,7 @@ function renderDetailPage(gpts) {
             <p class="detail-hero__lead">${escapeHtml(current.shortDescription)}</p>
           </div>
           <div class="detail-hero__actions">
-            <a class="button button--primary" href="${current.status === "Coming Soon" ? "#" : sanitizeUrl(current.runUrl)}" target="${current.status === "Coming Soon" ? "_self" : "_blank"}" rel="${current.status === "Coming Soon" ? "" : "noreferrer"}" ${current.status === "Coming Soon" ? 'aria-disabled="true" tabindex="-1"' : ""}>${current.status === "Coming Soon" ? "Coming Soon" : "Launch GPT"}</a>
+            <a class="button button--primary" href="${current.status === "Coming Soon" ? "#" : sanitizeUrl(current.runUrl)}" target="${current.status === "Coming Soon" ? "_self" : "_blank"}" rel="${current.status === "Coming Soon" ? "" : "noreferrer"}" ${current.status === "Coming Soon" ? 'aria-disabled="true" tabindex="-1"' : ""}>${actionLabel(current)}</a>
             <button class="button button--secondary" type="button" data-share-gpt>Share</button>
           </div>
         </div>
@@ -927,7 +934,7 @@ function renderDetailPage(gpts) {
           <article class="detail-side__card card-surface">
             <p class="detail-section__label">Actions</p>
             <div class="detail-side__actions">
-              <a class="button button--primary" href="${current.status === "Coming Soon" ? "#" : sanitizeUrl(current.runUrl)}" target="${current.status === "Coming Soon" ? "_self" : "_blank"}" rel="${current.status === "Coming Soon" ? "" : "noreferrer"}" ${current.status === "Coming Soon" ? 'aria-disabled="true" tabindex="-1"' : ""}>${current.status === "Coming Soon" ? "Coming Soon" : "Launch GPT"}</a>
+              <a class="button button--primary" href="${current.status === "Coming Soon" ? "#" : sanitizeUrl(current.runUrl)}" target="${current.status === "Coming Soon" ? "_self" : "_blank"}" rel="${current.status === "Coming Soon" ? "" : "noreferrer"}" ${current.status === "Coming Soon" ? 'aria-disabled="true" tabindex="-1"' : ""}>${actionLabel(current)}</a>
               <a class="button button--secondary" href="gpts.html">Back to GPTs</a>
             </div>
           </article>

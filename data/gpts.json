@@ -5,10 +5,11 @@
     "shortDescription": "يرصد أدوات الذكاء الاصطناعي الجديدة ويختصرها لك بسرعة.",
     "longDescription": "AI Radar هو GPT مخصص لمتابعة أخبار واتجاهات الذكاء الاصطناعي، واستخراج أهم الأدوات والميزات والفرص بطريقة عملية وسهلة القراءة.",
     "category": "Research",
-    "runUrl": "#",
+    "runUrl": "https://chatgpt.com/g/g-6a519c9b4e688191b896a96fa71fb211-ai-radar",
+    "ctaLabel": "Open GPT",
     "icon": "AR",
     "accent": "#0f766e",
-    "status": "Coming Soon",
+    "status": "Active",
     "featured": true,
     "features": [
       "متابعة الاتجاهات الجديدة",
